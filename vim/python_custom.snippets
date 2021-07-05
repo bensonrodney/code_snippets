@@ -7,3 +7,11 @@ if __name__ == '__main__':
     import sys
     sys.exit(main())
 endsnippet
+
+snippet argp
+from argparse import ArgumentParser
+parser = ArgumentParser()
+parser.add_argument("-${1:short_opt}", "--${2:long_opt}", help="${3:help_text}", default=None)
+args = parser.parse_args()
+endsnippet
+
