@@ -1,2 +1,2 @@
-# vscode_snippets
-Snippets I use in VSCode
+# code_snippets
+Snippets I use in VSCode and Vim
