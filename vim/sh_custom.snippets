@@ -1,0 +1,37 @@
+# getopt
+snippet jgetopt
+function usage () {
+	cat << EOF
+
+	Usage :  $(basename $\{0}) [options] [--]
+
+	Options:
+		-${1:short1}|${2:long1}	${3:option_help}
+		-${6:short2}|${7:long2} ${8:OPTVAL}	${9:option_help}
+		-h|help       Display this message
+		-v|version    Display script version"
+
+EOF
+}
+
+while getopts ":$1$6:h" opt ; do
+	case $opt in
+		$1|$2     )
+			${4:var1}="${5:some_value}"
+			;;
+		$6|$7     )
+			${10:var2}="${OPTARG}"
+			;;
+		h|help     )
+			usage
+			exit 0
+			;;
+		* )
+			echo -e "\n  Option does not exist : $OPTARG\n"
+			usage
+			exit 1
+			;;
+	esac
+done
+shift $(($OPTIND-1))
+endsnippet
