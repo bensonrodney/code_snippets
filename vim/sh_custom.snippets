@@ -35,3 +35,15 @@ while getopts ":$1$6:h" opt ; do
 done
 shift $(($OPTIND-1))
 endsnippet
+
+snippet iff
+if ${1:condition} ; then
+	${0:#TODO}
+fi
+endsnippet
+
+snippet iffile
+if [[ -${1:f} ${2:file} ]] ; then
+	${0:#TODO}
+fi
+endsnippet
