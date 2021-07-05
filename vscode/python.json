@@ -21,5 +21,17 @@
 	    "    args = parser.parse_args()"
 		],
 		"description": "Argument Parser using the argparse module"
+	},
+	"Main Function": {
+		"prefix": "mainf",
+		"body": [
+	    "def main():",
+		"    return 0",
+		"",
+	    "if __name__ == '__main__':",
+		"    import sys",
+	    "    sys.exit(main())"
+		],
+		"description": "Argument Parser using the argparse module"
 	}
 }
