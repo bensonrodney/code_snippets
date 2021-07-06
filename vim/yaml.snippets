@@ -1,0 +1,45 @@
+snippet awsEc2instance
+${1:InstanceName}EC2Instance:
+  Type: AWS::EC2::Instance
+  Properties:
+    ImageId: !FindInMap [ AWSRegionArch2AMI, !Ref 'AWS::Region' , !FindInMap [ AWSInstanceType2Arch, !Ref InstanceType, Arch ] ]
+    KeyName: !Ref $1KeyName
+    InstanceType: !Ref $1InstanceType
+    SecurityGroups:
+    - !Ref $1Ec2SecurityGroup
+    BlockDeviceMappings:
+    -
+      DeviceName: /dev/sda1
+      Ebs:
+      VolumeSize: 50
+    -
+      DeviceName: /dev/sdm
+      Ebs:
+      VolumeSize: 100
+  ${0:#more}
+endsnippet
+
+snippet awsSecGroup
+${1:InstanceName}SecurityGroup:
+  Type: 'AWS::EC2::SecurityGroup'
+  Properties:
+    VpcId: ${2:VpcId}
+    GroupDescription: ${3:description}
+    SecurityGroupIngress:
+      ${4:sec_group_ingress_rules}
+endsnippet
+
+snippet awsSecGroupIngressRule
+- Description: ${1:description}
+  IpProtocol: ${2:tcp}
+  FromPort: '${3:22}'
+  ToPort: '${4:22}'
+  CidrIp: '${5:0.0.0.0/0}'
+${0:#more}
+endsnippet
+
+snippet awsUserData
+UserData:
+  Fn::Base64: !Sub |
+    ${1:user_data}
+endsnippet
